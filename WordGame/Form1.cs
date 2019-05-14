@@ -20,6 +20,8 @@ namespace WordGame
         public Form1()
         {
             InitializeComponent();
+            Random random = new Random();
+            c = (char)('a' + random.Next(0, 26));
             InitializeGame();
             InitializeTimer();
         }
@@ -30,6 +32,8 @@ namespace WordGame
             {
                 //MessageBox.Show("YAY");
                 score += textBoxAns.Text.Length * 10;
+                string ans = CleanAnswer(textBoxAns.Text);
+                c = ans[ans.Length - 1];
                 InitializeGame();
             }
             else
@@ -48,8 +52,6 @@ namespace WordGame
             counter = 10;
             textBoxAns.Text = "";
             labelScore.Text = "Your Score: " + score.ToString();
-            Random random = new Random();
-            c = (char) ('a' + random.Next(0, 26));
             labelQuestion.Text = "Word starts with " + Char.ToUpper(c);
         }
 
