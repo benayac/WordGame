@@ -12,67 +12,46 @@ namespace WordGame
 {
     public partial class Form1 : Form
     {
-        private char c;
-        private int score = 0;
-        private int counter;
-        //private int wordCount;
-
         public Form1()
         {
             InitializeComponent();
-            Random random = new Random();
-            c = (char)('a' + random.Next(0, 26));
-            InitializeGame();
-            InitializeTimer();
+            using (var db = new UserModel())
+            {
+                int score = 0;
+                var query = from user in db.Tables select user;
+                foreach(var item in query)
+                {
+                    if (item.highscore > score)
+                    {
+                        score = item.highscore;
+                    }
+                }
+                lblHighscore.Text = "Highest Score: " + score;
+            }
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
-            if (Word.WordCheck(CleanAnswer(textBoxAns.Text)) == true && CleanAnswer(textBoxAns.Text)[0] == c)
-            {
-                //MessageBox.Show("YAY");
-                score += textBoxAns.Text.Length * 10;
-                string ans = CleanAnswer(textBoxAns.Text);
-                c = ans[ans.Length - 1];
-                InitializeGame();
-            }
-            else
-                MessageBox.Show("Nah");
+            this.Hide();
+            Game game = new Game();
+            game.Closed += (s, args) => this.Close();
+            game.Show();
         }
 
-        private string CleanAnswer(string answer)
+        private void buttonHowToPlay_Click(object sender, EventArgs e)
         {
-            answer = answer.Replace(" ", "").Replace(".", "").Replace(",", "");
-            answer = answer.ToLower();
-            return answer;
+            MessageBox.Show("How to play!\n\nType a word starting with the determined letter!\nYour word's last character will be the next starting letter!");
         }
 
-        private void InitializeGame()
+        private void btnLeaderboard_Click(object sender, EventArgs e)
         {
-            counter = 10;
-            textBoxAns.Text = "";
-            labelScore.Text = "Your Score: " + score.ToString();
-            labelQuestion.Text = "Word starts with " + Char.ToUpper(c);
+            Leaderboards leaderboards = new Leaderboards();
+            leaderboards.Show();
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-            labelTime.Text = "Time: " + counter.ToString();
-            counter-=1;
-            if(counter == -1)
-            {
-                timer1.Stop();
-                MessageBox.Show("Game Over");
-                this.Close();
-            }
-        }
 
-        private void InitializeTimer()
-        {
-            timer1 = new Timer();
-            timer1.Interval = 1000;
-            timer1.Enabled = true;
-            timer1.Tick += new System.EventHandler(timer1_Tick);
         }
     }
 }

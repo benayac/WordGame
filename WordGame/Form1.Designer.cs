@@ -28,89 +28,121 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.textBoxAns = new System.Windows.Forms.TextBox();
             this.buttonSubmit = new System.Windows.Forms.Button();
-            this.labelQuestion = new System.Windows.Forms.Label();
-            this.labelScore = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.labelTime = new System.Windows.Forms.Label();
+            this.buttonHowToPlay = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblHighscore = new System.Windows.Forms.Label();
+            this.btnLeaderboard = new System.Windows.Forms.Button();
+            this.btnPlayCPU = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // textBoxAns
-            // 
-            this.textBoxAns.Location = new System.Drawing.Point(12, 111);
-            this.textBoxAns.Name = "textBoxAns";
-            this.textBoxAns.Size = new System.Drawing.Size(409, 22);
-            this.textBoxAns.TabIndex = 0;
             // 
             // buttonSubmit
             // 
-            this.buttonSubmit.Location = new System.Drawing.Point(172, 159);
+            this.buttonSubmit.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSubmit.BackgroundImage = global::WordGame.Properties.Resources.button2;
+            this.buttonSubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonSubmit.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonSubmit.Location = new System.Drawing.Point(356, 205);
             this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(75, 34);
+            this.buttonSubmit.Size = new System.Drawing.Size(152, 61);
             this.buttonSubmit.TabIndex = 1;
-            this.buttonSubmit.Text = "Enter";
-            this.buttonSubmit.UseVisualStyleBackColor = true;
+            this.buttonSubmit.Text = "Play Solo";
+            this.buttonSubmit.UseVisualStyleBackColor = false;
             this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
             // 
-            // labelQuestion
+            // buttonHowToPlay
             // 
-            this.labelQuestion.AutoSize = true;
-            this.labelQuestion.Location = new System.Drawing.Point(153, 59);
-            this.labelQuestion.Name = "labelQuestion";
-            this.labelQuestion.Size = new System.Drawing.Size(46, 17);
-            this.labelQuestion.TabIndex = 2;
-            this.labelQuestion.Text = "label1";
+            this.buttonHowToPlay.BackColor = System.Drawing.Color.Transparent;
+            this.buttonHowToPlay.BackgroundImage = global::WordGame.Properties.Resources.button2;
+            this.buttonHowToPlay.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonHowToPlay.ForeColor = System.Drawing.Color.Transparent;
+            this.buttonHowToPlay.Location = new System.Drawing.Point(356, 376);
+            this.buttonHowToPlay.Name = "buttonHowToPlay";
+            this.buttonHowToPlay.Size = new System.Drawing.Size(152, 61);
+            this.buttonHowToPlay.TabIndex = 2;
+            this.buttonHowToPlay.Text = "How To Play";
+            this.buttonHowToPlay.UseVisualStyleBackColor = false;
+            this.buttonHowToPlay.Click += new System.EventHandler(this.buttonHowToPlay_Click);
             // 
-            // labelScore
+            // label1
             // 
-            this.labelScore.AutoSize = true;
-            this.labelScore.Location = new System.Drawing.Point(325, 53);
-            this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(53, 17);
-            this.labelScore.TabIndex = 3;
-            this.labelScore.Text = "Score: ";
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Montserrat", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(266, 47);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(333, 55);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "BattleText KW!";
             // 
-            // timer1
+            // lblHighscore
             // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.lblHighscore.AutoSize = true;
+            this.lblHighscore.BackColor = System.Drawing.Color.Transparent;
+            this.lblHighscore.Font = new System.Drawing.Font("Montserrat", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHighscore.ForeColor = System.Drawing.Color.White;
+            this.lblHighscore.Location = new System.Drawing.Point(349, 155);
+            this.lblHighscore.Name = "lblHighscore";
+            this.lblHighscore.Size = new System.Drawing.Size(166, 27);
+            this.lblHighscore.TabIndex = 4;
+            this.lblHighscore.Text = "Highest Score:";
             // 
-            // labelTime
+            // btnLeaderboard
             // 
-            this.labelTime.AutoSize = true;
-            this.labelTime.Location = new System.Drawing.Point(325, 21);
-            this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(63, 17);
-            this.labelTime.TabIndex = 4;
-            this.labelTime.Text = "Time: 10";
+            this.btnLeaderboard.BackColor = System.Drawing.Color.Transparent;
+            this.btnLeaderboard.BackgroundImage = global::WordGame.Properties.Resources.button2;
+            this.btnLeaderboard.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnLeaderboard.ForeColor = System.Drawing.Color.Transparent;
+            this.btnLeaderboard.Location = new System.Drawing.Point(356, 455);
+            this.btnLeaderboard.Name = "btnLeaderboard";
+            this.btnLeaderboard.Size = new System.Drawing.Size(152, 61);
+            this.btnLeaderboard.TabIndex = 6;
+            this.btnLeaderboard.Text = "Leaderboards";
+            this.btnLeaderboard.UseVisualStyleBackColor = false;
+            this.btnLeaderboard.Click += new System.EventHandler(this.btnLeaderboard_Click);
+            // 
+            // btnPlayCPU
+            // 
+            this.btnPlayCPU.BackColor = System.Drawing.Color.Transparent;
+            this.btnPlayCPU.BackgroundImage = global::WordGame.Properties.Resources.button2;
+            this.btnPlayCPU.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPlayCPU.ForeColor = System.Drawing.Color.Transparent;
+            this.btnPlayCPU.Location = new System.Drawing.Point(354, 290);
+            this.btnPlayCPU.Name = "btnPlayCPU";
+            this.btnPlayCPU.Size = new System.Drawing.Size(152, 61);
+            this.btnPlayCPU.TabIndex = 7;
+            this.btnPlayCPU.Text = "Play vs CPU";
+            this.btnPlayCPU.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 225);
-            this.Controls.Add(this.labelTime);
-            this.Controls.Add(this.labelScore);
-            this.Controls.Add(this.labelQuestion);
+            this.BackgroundImage = global::WordGame.Properties.Resources.bakcground;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(830, 538);
+            this.Controls.Add(this.btnPlayCPU);
+            this.Controls.Add(this.btnLeaderboard);
+            this.Controls.Add(this.lblHighscore);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonHowToPlay);
             this.Controls.Add(this.buttonSubmit);
-            this.Controls.Add(this.textBoxAns);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBoxAns;
         private System.Windows.Forms.Button buttonSubmit;
-        private System.Windows.Forms.Label labelQuestion;
-        private System.Windows.Forms.Label labelScore;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Label labelTime;
+        private System.Windows.Forms.Button buttonHowToPlay;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblHighscore;
+        private System.Windows.Forms.Button btnLeaderboard;
+        private System.Windows.Forms.Button btnPlayCPU;
     }
 }
 
