@@ -33,9 +33,9 @@ namespace WordGame
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Game game = new Game();
-            game.Closed += (s, args) => this.Close();
-            game.Show();
+            UsernameForm username = new UsernameForm(0);
+            username.Closed += (s, args) => this.Close();
+            username.Show();
         }
 
         private void buttonHowToPlay_Click(object sender, EventArgs e)
@@ -52,6 +52,14 @@ namespace WordGame
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPlayCPU_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            UsernameForm username = new UsernameForm(1);
+            username.Closed += (s, args) => this.Close();
+            username.Show();
         }
     }
 }

@@ -28,40 +28,34 @@ namespace WordGame
             c = (char)('a' + random.Next(0, 26));
             InitializeGame();
             InitializeTimer();
+            textBoxAns.KeyDown += new KeyEventHandler(tb_keyDown);
         }
 
         private void buttonSubmit_Click(object sender, EventArgs e)
         {
             if (textBoxAns != null
-                && Word.WordCheck(CleanAnswer(textBoxAns.Text)) == true 
-                && CleanAnswer(textBoxAns.Text)[0] == c 
-                && !usedWord.Contains(CleanAnswer(textBoxAns.Text)))
+                && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == true 
+                && Word.CleanAnswer(textBoxAns.Text)[0] == c 
+                && !usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
             {
-                usedWord.Add(CleanAnswer(textBoxAns.Text));
+                usedWord.Add(Word.CleanAnswer(textBoxAns.Text));
                 score += textBoxAns.Text.Length * 10;
-                string ans = CleanAnswer(textBoxAns.Text);
+                string ans = Word.CleanAnswer(textBoxAns.Text);
                 c = ans[ans.Length - 1];
                 InitializeGame();
-            } else if (usedWord.Contains(CleanAnswer(textBoxAns.Text)))
+            } else if (usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
             {
                 timer1.Stop();
                 MessageBox.Show("You have used this word, try another");
                 timer1.Start();
             }
             else if (textBoxAns != null
-                && Word.WordCheck(CleanAnswer(textBoxAns.Text)) == false)
+                && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == false)
             {
                 timer1.Stop();
                 MessageBox.Show("It seems that I can't understand your word :/");
                 timer1.Start();
             }
-        }
-
-        private string CleanAnswer(string answer)
-        {
-            answer = answer.Replace(" ", "").Replace(".", "").Replace(",", "");
-            answer = answer.ToLower();
-            return answer;
         }
 
         private void InitializeGame()
@@ -81,9 +75,21 @@ namespace WordGame
                 timer1.Stop();
                 MessageBox.Show("My time is running out! Game over! Good bye :(");
                 this.Hide();
-                UsernameForm form = new UsernameForm();
-                //form.Closed += (s, args) => this.Close();
+
+                using (var db = new UserModel())
+                {
+                    Table User = new Table
+                    {
+                        highscore = Game.score,
+                        username = UsernameForm.username,
+                    };
+                    db.Tables.Add(User);
+                    db.SaveChanges();
+                }
+                Form1 form = new Form1();
+                form.Closed += (s, args) => this.Close();
                 form.Show();
+                this.Hide();
             }
         }
 
@@ -93,6 +99,44 @@ namespace WordGame
             timer1.Interval = 1000;
             timer1.Enabled = true;
             timer1.Tick += new System.EventHandler(timer1_Tick);
+        }
+
+        public void tb_keyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SubmitAnswer();
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        public void SubmitAnswer()
+        {
+            if (textBoxAns != null
+                    && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == true
+                    && Word.CleanAnswer(textBoxAns.Text)[0] == c
+                    && !usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
+            {
+                usedWord.Add(Word.CleanAnswer(textBoxAns.Text));
+                score += textBoxAns.Text.Length * 10;
+                string ans = Word.CleanAnswer(textBoxAns.Text);
+                c = ans[ans.Length - 1];
+                InitializeGame();
+            }
+            else if (usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
+            {
+                timer1.Stop();
+                MessageBox.Show("You have used this word, try another");
+                timer1.Start();
+            }
+            else if (textBoxAns != null
+                && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == false)
+            {
+                timer1.Stop();
+                MessageBox.Show("It seems that I can't understand your word :/");
+                timer1.Start();
+            }
         }
     }
 }

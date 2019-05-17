@@ -114,6 +114,7 @@
             this.btnPlayCPU.TabIndex = 7;
             this.btnPlayCPU.Text = "Play vs CPU";
             this.btnPlayCPU.UseVisualStyleBackColor = false;
+            this.btnPlayCPU.Click += new System.EventHandler(this.btnPlayCPU_Click);
             // 
             // Form1
             // 

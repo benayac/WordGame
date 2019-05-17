@@ -91,9 +91,8 @@
             this.textBoxAns.BackColor = System.Drawing.Color.White;
             this.textBoxAns.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAns.Location = new System.Drawing.Point(173, 234);
-            this.textBoxAns.Multiline = true;
             this.textBoxAns.Name = "textBoxAns";
-            this.textBoxAns.Size = new System.Drawing.Size(409, 38);
+            this.textBoxAns.Size = new System.Drawing.Size(409, 32);
             this.textBoxAns.TabIndex = 5;
             // 
             // Game
@@ -108,6 +107,7 @@
             this.Controls.Add(this.labelQuestion);
             this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.textBoxAns);
+            this.KeyPreview = true;
             this.Name = "Game";
             this.Text = "Game";
             this.ResumeLayout(false);

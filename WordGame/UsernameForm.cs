@@ -12,27 +12,29 @@ namespace WordGame
 {
     public partial class UsernameForm : Form
     {
-        public UsernameForm()
+        public static string username;
+        public int mode;
+        public UsernameForm(int mode)
         {
+            this.mode = mode;
             InitializeComponent();
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            using (var db = new UserModel())
+            username = tbName.Text;
+            if (mode == 0)
             {
-                Table User = new Table
-                {
-                    highscore = Game.score,
-                    username = tbName.Text,
-                };
-                db.Tables.Add(User);
-                db.SaveChanges();
-                Close();
+                Game game = new Game();
+                game.Closed += (s, args) => this.Close();
+                game.Show();
+            } else if (mode == 1)
+            {
+                PlayVCPU play = new PlayVCPU();
+                play.FormClosed += (s, args) => this.Close();
+                play.Show();
             }
-            Form1 form1 = new Form1();
-            form1.Show();
-            this.Close();
+            this.Hide();
         }
     }
 }
