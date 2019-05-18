@@ -33,7 +33,7 @@ namespace WordGame
         public static string GetRandomWord(char c)
         {
             Random random = new Random();
-            string questMark = new string('?', random.Next(5, 13));
+            string questMark = new string('?', random.Next(5, 10));
             string ans = c + questMark;
             var client = new RestClient("https://api.datamuse.com/");
             var request = new RestRequest($"words?sp={ans}", Method.GET);

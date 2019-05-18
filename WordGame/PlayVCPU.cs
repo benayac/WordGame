@@ -36,14 +36,26 @@ namespace WordGame
         {
             counter = 10;
             lblPlayerScore.Text = Convert.ToString(userScore);
-            lblPlayerWord.Text = tbAnswer.Text;
+            //lblPlayerWord.Text = tbAnswer.Text;
+            //tbAnswer.Text = "";
             lblQuestion.Text = "First letter " + c;
+            if(userScore >= 200)
+            {
+                timerCounter.Stop();
+                MessageBox.Show("Congrats you win! :D");
+                Close();
+            }
 
         }
         public void InitializeBot()
         {
             lblBotScore.Text = Convert.ToString(botScore);
             lblQuestion.Text = "First letter " + c;
+            if(botScore >= 200)
+            {
+                MessageBox.Show("I Win :D");
+                Close();
+            }
 
         }
        
@@ -67,9 +79,10 @@ namespace WordGame
                 usedWord.Add(Word.CleanAnswer(tbAnswer.Text));
                 userScore += Word.CleanAnswer(tbAnswer.Text).Length * 10;
                 string ans = Word.CleanAnswer(tbAnswer.Text);
-                tbAnswer.Text = "";
                 c = ans[ans.Length - 1];
                 timerCounter.Stop();
+                lblPlayerWord.Text = tbAnswer.Text;
+                tbAnswer.Text = "";
                 InitializeUser();
                 BotTurn();
             }
@@ -87,10 +100,13 @@ namespace WordGame
             c = ans[ans.Length - 1];
             InitializeBot();
             InitializeUser();
+            timerCounter.Start();
+            tbAnswer.Enabled = true;
         }
 
         public void BotTurn()
         {
+            tbAnswer.Enabled = false;
             Random random = new Random();
             counter = random.Next(1, 3);
             InitializeBotCounter();

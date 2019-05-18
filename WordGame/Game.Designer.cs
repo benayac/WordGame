@@ -32,7 +32,6 @@
             this.labelTime = new System.Windows.Forms.Label();
             this.labelScore = new System.Windows.Forms.Label();
             this.labelQuestion = new System.Windows.Forms.Label();
-            this.buttonSubmit = new System.Windows.Forms.Button();
             this.textBoxAns = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
@@ -41,11 +40,11 @@
             // 
             this.labelTime.AutoSize = true;
             this.labelTime.BackColor = System.Drawing.Color.Transparent;
-            this.labelTime.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTime.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTime.ForeColor = System.Drawing.Color.FloralWhite;
-            this.labelTime.Location = new System.Drawing.Point(485, 63);
+            this.labelTime.Location = new System.Drawing.Point(545, 56);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(131, 37);
+            this.labelTime.Size = new System.Drawing.Size(113, 32);
             this.labelTime.TabIndex = 9;
             this.labelTime.Text = "Time: 10";
             // 
@@ -53,11 +52,11 @@
             // 
             this.labelScore.AutoSize = true;
             this.labelScore.BackColor = System.Drawing.Color.Transparent;
-            this.labelScore.Font = new System.Drawing.Font("Montserrat", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelScore.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelScore.ForeColor = System.Drawing.Color.FloralWhite;
-            this.labelScore.Location = new System.Drawing.Point(485, 140);
+            this.labelScore.Location = new System.Drawing.Point(545, 133);
             this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(112, 37);
+            this.labelScore.Size = new System.Drawing.Size(97, 32);
             this.labelScore.TabIndex = 8;
             this.labelScore.Text = "Score: ";
             // 
@@ -73,24 +72,11 @@
             this.labelQuestion.TabIndex = 7;
             this.labelQuestion.Text = "label1";
             // 
-            // buttonSubmit
-            // 
-            this.buttonSubmit.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSubmit.BackgroundImage = global::WordGame.Properties.Resources.button2;
-            this.buttonSubmit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonSubmit.Location = new System.Drawing.Point(281, 305);
-            this.buttonSubmit.Name = "buttonSubmit";
-            this.buttonSubmit.Size = new System.Drawing.Size(187, 89);
-            this.buttonSubmit.TabIndex = 6;
-            this.buttonSubmit.Text = "Enter";
-            this.buttonSubmit.UseVisualStyleBackColor = false;
-            this.buttonSubmit.Click += new System.EventHandler(this.buttonSubmit_Click);
-            // 
             // textBoxAns
             // 
             this.textBoxAns.BackColor = System.Drawing.Color.White;
             this.textBoxAns.Font = new System.Drawing.Font("Montserrat SemiBold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAns.Location = new System.Drawing.Point(173, 234);
+            this.textBoxAns.Location = new System.Drawing.Point(170, 273);
             this.textBoxAns.Name = "textBoxAns";
             this.textBoxAns.Size = new System.Drawing.Size(409, 32);
             this.textBoxAns.TabIndex = 5;
@@ -105,7 +91,6 @@
             this.Controls.Add(this.labelTime);
             this.Controls.Add(this.labelScore);
             this.Controls.Add(this.labelQuestion);
-            this.Controls.Add(this.buttonSubmit);
             this.Controls.Add(this.textBoxAns);
             this.KeyPreview = true;
             this.Name = "Game";
@@ -120,7 +105,6 @@
         private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.Label labelQuestion;
-        private System.Windows.Forms.Button buttonSubmit;
         private System.Windows.Forms.TextBox textBoxAns;
         private System.Windows.Forms.Timer timer1;
     }
