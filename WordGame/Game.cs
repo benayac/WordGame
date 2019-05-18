@@ -22,6 +22,7 @@ namespace WordGame
         public Game()
         {
             score = 0;
+            counter = 60;
             InitializeComponent();
             usedWord = new List<string>();
             Random random = new Random();
@@ -60,7 +61,7 @@ namespace WordGame
 
         private void InitializeGame()
         {
-            counter = 10;
+            //counter = 10;
             textBoxAns.Text = "";
             labelScore.Text = "Your Score: " + score.ToString();
             labelQuestion.Text = "Word starts with " + Char.ToUpper(c);
@@ -82,6 +83,7 @@ namespace WordGame
                     {
                         highscore = Game.score,
                         username = UsernameForm.username,
+                        gamemode = "Solo",
                     };
                     db.Tables.Add(User);
                     db.SaveChanges();

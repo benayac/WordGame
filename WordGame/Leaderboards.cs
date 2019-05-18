@@ -12,18 +12,47 @@ namespace WordGame
 {
     public partial class Leaderboards : Form
     {
-        private List<string> userNameList;
-        private List<int> scoreList;
+        private List<string> userNameList, userNameCPUList;
+        private List<int> scoreList, scoreCPUList;
+        string users = "";
+        string scores = "";
+        int topScore = 0;
+        int index = 0;
         public Leaderboards()
         {
             InitializeComponent();
-            string users = "";
-            string scores = "";
-            int topScore = 0;
-            int index = 0;
             AddUser();
+            SoloLeaderboard();
+            CpuLeaderboard();
 
-            if(userNameList.Count >= 5)
+        }
+
+        public void AddUser()
+        {
+            using (var db = new UserModel())
+            {
+                userNameList = new List<string>();
+                scoreList = new List<int>();
+                userNameCPUList = new List<string>();
+                scoreCPUList = new List<int>();
+                var query = from user in db.Tables where user.gamemode == "solo" select user;
+                foreach (var item in query)
+                {
+                    userNameList.Add(item.username);
+                    scoreList.Add(item.highscore);
+                }
+                query = from user in db.Tables where user.gamemode == "VS CPU" select user;
+                foreach (var item in query)
+                {
+                    userNameCPUList.Add(item.username);
+                    scoreCPUList.Add(item.highscore);
+                }
+            }
+        }
+
+        public void SoloLeaderboard()
+        {
+            if (userNameList.Count >= 5)
             {
                 users = "";
                 scores = "";
@@ -44,10 +73,11 @@ namespace WordGame
                     scoreList.Remove(topScore);
                     topScore = 0;
                 }
-            } else
+            }
+            else
             {
                 int x = scoreList.Count();
-                for(int i = 0; i < x; i++)
+                for (int i = 0; i < x; i++)
                 {
                     for (int j = 0; j < scoreList.Count(); j++)
                     {
@@ -68,19 +98,53 @@ namespace WordGame
             lblScore.Text = scores;
         }
 
-        public void AddUser()
+        public void CpuLeaderboard()
         {
-            using (var db = new UserModel())
+            if (userNameCPUList.Count >= 5)
             {
-                userNameList = new List<string>();
-                scoreList = new List<int>();
-                var query = from user in db.Tables select user;
-                foreach (var item in query)
+                users = "";
+                scores = "";
+                for (int i = 0; i < 5; i++)
                 {
-                    userNameList.Add(item.username);
-                    scoreList.Add(item.highscore);
+                    int x = scoreCPUList.Count();
+                    for (int j = 0; j < x; j++)
+                    {
+                        if (scoreCPUList[j] > topScore)
+                        {
+                            topScore = scoreCPUList[j];
+                            index = j;
+                        }
+                    }
+                    users += userNameCPUList[index] + "\n";
+                    userNameCPUList.RemoveAt(index);
+                    scores += Convert.ToString(topScore) + "\n";
+                    scoreCPUList.Remove(topScore);
+                    topScore = 0;
                 }
             }
+            else
+            {
+                int x = scoreCPUList.Count();
+                for (int i = 0; i < x; i++)
+                {
+                    for (int j = 0; j < scoreCPUList.Count(); j++)
+                    {
+                        if (scoreCPUList[j] > topScore)
+                        {
+                            topScore = scoreCPUList[j];
+                            index = j;
+                        }
+                    }
+                    users += userNameCPUList[index] + "\n";
+                    userNameCPUList.RemoveAt(index);
+                    scores += Convert.ToString(topScore) + "\n";
+                    scoreCPUList.RemoveAt(index);
+                    topScore = 0;
+                }
+            }
+            lblCpuUsername.Text = users;
+            lblCpuScore.Text = scores;
         }
+
     }
 }

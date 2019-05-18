@@ -13,8 +13,13 @@ namespace WordGame
         public int Id { get; set; }
 
         public int highscore { get; set; }
-        
+
+        [Required]
         [StringLength(50)]
         public string username { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string gamemode { get; set; }
     }
 }

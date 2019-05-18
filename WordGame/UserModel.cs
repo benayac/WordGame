@@ -8,7 +8,7 @@ namespace WordGame
     public partial class UserModel : DbContext
     {
         public UserModel()
-            : base("name=UserModel")
+            : base("name=UserModel1")
         {
         }
 

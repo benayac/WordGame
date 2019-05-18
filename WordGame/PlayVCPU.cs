@@ -17,6 +17,7 @@ namespace WordGame
         List<string> usedWord;
         char c;
         int counter;
+        int round = 0;
         public PlayVCPU()
         {
             InitializeComponent();
@@ -43,7 +44,21 @@ namespace WordGame
             {
                 timerCounter.Stop();
                 MessageBox.Show("Congrats you win! :D");
-                Close();
+                using (var db = new UserModel())
+                {
+                    Table table = new Table
+                    {
+                        username = UsernameForm.username,
+                        highscore = round,
+                        gamemode = "VS CPU",
+                    };
+                    db.Tables.Add(table);
+                    db.SaveChanges();
+                    Form1 form = new Form1();
+                    form.Closed += (s, args) => this.Close();
+                    form.Show();
+                    this.Hide();
+                }
             }
 
         }
@@ -54,7 +69,10 @@ namespace WordGame
             if(botScore >= 200)
             {
                 MessageBox.Show("I Win :D");
-                Close();
+                Form1 form = new Form1();
+                form.Closed += (s, args) => this.Close();
+                form.Show();
+                this.Hide();
             }
 
         }
@@ -83,6 +101,7 @@ namespace WordGame
                 timerCounter.Stop();
                 lblPlayerWord.Text = tbAnswer.Text;
                 tbAnswer.Text = "";
+                round++;
                 InitializeUser();
                 BotTurn();
             }
