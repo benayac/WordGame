@@ -14,8 +14,7 @@ namespace WordGame
     {
         private List<string> userNameList, userNameCPUList;
         private List<int> scoreList, scoreCPUList;
-        string users = "";
-        string scores = "";
+        string users, usersCPU, scores, scoresCPU;
         int topScore = 0;
         int index = 0;
         public Leaderboards()
@@ -59,7 +58,7 @@ namespace WordGame
                 for (int i = 0; i < 5; i++)
                 {
                     int x = scoreList.Count();
-                    for (int j = 0; j < x; j++)
+                    for (int j = 0; j < x; j++) 
                     {
                         if (scoreList[j] > topScore)
                         {
@@ -102,8 +101,8 @@ namespace WordGame
         {
             if (userNameCPUList.Count >= 5)
             {
-                users = "";
-                scores = "";
+                usersCPU = "";
+                scoresCPU = "";
                 for (int i = 0; i < 5; i++)
                 {
                     int x = scoreCPUList.Count();
@@ -115,9 +114,9 @@ namespace WordGame
                             index = j;
                         }
                     }
-                    users += userNameCPUList[index] + "\n";
+                    usersCPU += userNameCPUList[index] + "\n";
                     userNameCPUList.RemoveAt(index);
-                    scores += Convert.ToString(topScore) + "\n";
+                    scoresCPU += Convert.ToString(topScore) + "\n";
                     scoreCPUList.Remove(topScore);
                     topScore = 0;
                 }
@@ -135,15 +134,15 @@ namespace WordGame
                             index = j;
                         }
                     }
-                    users += userNameCPUList[index] + "\n";
+                    usersCPU += userNameCPUList[index] + "\n";
                     userNameCPUList.RemoveAt(index);
-                    scores += Convert.ToString(topScore) + "\n";
+                    scoresCPU += Convert.ToString(topScore) + "\n";
                     scoreCPUList.RemoveAt(index);
                     topScore = 0;
                 }
             }
-            lblCpuUsername.Text = users;
-            lblCpuScore.Text = scores;
+            lblCpuUsername.Text = usersCPU;
+            lblCpuScore.Text = scoresCPU;
         }
 
     }

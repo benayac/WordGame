@@ -32,33 +32,6 @@ namespace WordGame
             textBoxAns.KeyDown += new KeyEventHandler(tb_keyDown);
         }
 
-        private void buttonSubmit_Click(object sender, EventArgs e)
-        {
-            if (textBoxAns != null
-                && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == true 
-                && Word.CleanAnswer(textBoxAns.Text)[0] == c 
-                && !usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
-            {
-                usedWord.Add(Word.CleanAnswer(textBoxAns.Text));
-                score += textBoxAns.Text.Length * 10;
-                string ans = Word.CleanAnswer(textBoxAns.Text);
-                c = ans[ans.Length - 1];
-                InitializeGame();
-            } else if (usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))
-            {
-                timer1.Stop();
-                MessageBox.Show("You have used this word, try another");
-                timer1.Start();
-            }
-            else if (textBoxAns != null
-                && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == false)
-            {
-                timer1.Stop();
-                MessageBox.Show("It seems that I can't understand your word :/");
-                timer1.Start();
-            }
-        }
-
         private void InitializeGame()
         {
             //counter = 10;
@@ -115,7 +88,7 @@ namespace WordGame
 
         public void SubmitAnswer()
         {
-            if (textBoxAns != null
+            if (textBoxAns.Text != ""
                     && Word.WordCheck(Word.CleanAnswer(textBoxAns.Text)) == true
                     && Word.CleanAnswer(textBoxAns.Text)[0] == c
                     && !usedWord.Contains(Word.CleanAnswer(textBoxAns.Text)))

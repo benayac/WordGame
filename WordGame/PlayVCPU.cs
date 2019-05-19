@@ -37,29 +37,7 @@ namespace WordGame
         {
             counter = 10;
             lblPlayerScore.Text = Convert.ToString(userScore);
-            //lblPlayerWord.Text = tbAnswer.Text;
-            //tbAnswer.Text = "";
             lblQuestion.Text = "First letter " + c;
-            if(userScore >= 200)
-            {
-                timerCounter.Stop();
-                MessageBox.Show("Congrats you win! :D");
-                using (var db = new UserModel())
-                {
-                    Table table = new Table
-                    {
-                        username = UsernameForm.username,
-                        highscore = round,
-                        gamemode = "VS CPU",
-                    };
-                    db.Tables.Add(table);
-                    db.SaveChanges();
-                    Form1 form = new Form1();
-                    form.Closed += (s, args) => this.Close();
-                    form.Show();
-                    this.Hide();
-                }
-            }
 
         }
         public void InitializeBot()
@@ -89,7 +67,7 @@ namespace WordGame
 
         public void UserAnswer()
         {
-            if(tbAnswer != null
+            if(tbAnswer.Text != ""
                 && Word.CleanAnswer(tbAnswer.Text)[0] == c 
                 && Word.WordCheck(Word.CleanAnswer(tbAnswer.Text)) == true
                 && !usedWord.Contains(Word.CleanAnswer(tbAnswer.Text)))
@@ -103,6 +81,28 @@ namespace WordGame
                 tbAnswer.Text = "";
                 round++;
                 InitializeUser();
+
+                if (userScore >= 200)
+                {
+                    timerCounter.Stop();
+                    timer2.Stop();
+                    MessageBox.Show("Congrats you win! :D");
+                    using (var db = new UserModel())
+                    {
+                        Table table = new Table
+                        {
+                            username = UsernameForm.username,
+                            highscore = round,
+                            gamemode = "VS CPU",
+                        };
+                        db.Tables.Add(table);
+                        db.SaveChanges();
+                        Form1 form = new Form1();
+                        form.Closed += (s, args) => this.Close();
+                        form.Show();
+                        this.Hide();
+                    }
+                } else
                 BotTurn();
             }
             else

@@ -42,9 +42,9 @@
             this.labelTime.BackColor = System.Drawing.Color.Transparent;
             this.labelTime.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelTime.ForeColor = System.Drawing.Color.FloralWhite;
-            this.labelTime.Location = new System.Drawing.Point(545, 56);
+            this.labelTime.Location = new System.Drawing.Point(481, 51);
             this.labelTime.Name = "labelTime";
-            this.labelTime.Size = new System.Drawing.Size(113, 32);
+            this.labelTime.Size = new System.Drawing.Size(115, 33);
             this.labelTime.TabIndex = 9;
             this.labelTime.Text = "Time: 10";
             // 
@@ -54,9 +54,9 @@
             this.labelScore.BackColor = System.Drawing.Color.Transparent;
             this.labelScore.Font = new System.Drawing.Font("Montserrat", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelScore.ForeColor = System.Drawing.Color.FloralWhite;
-            this.labelScore.Location = new System.Drawing.Point(545, 133);
+            this.labelScore.Location = new System.Drawing.Point(481, 128);
             this.labelScore.Name = "labelScore";
-            this.labelScore.Size = new System.Drawing.Size(97, 32);
+            this.labelScore.Size = new System.Drawing.Size(98, 33);
             this.labelScore.TabIndex = 8;
             this.labelScore.Text = "Score: ";
             // 
